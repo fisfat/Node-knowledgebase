@@ -1,0 +1,14 @@
+{
+  "name": "nodekb",
+  "version": "1.0.0",
+  "description": "Node knowlege base",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app"
+  },
+  "author": "Fisfat",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

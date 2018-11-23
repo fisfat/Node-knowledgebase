@@ -1,0 +1,9 @@
+extends layouts
+block content
+        h1 #{title}
+        ul.list-group
+            each article, i in articles
+                li.list-group-item
+                     a(href="/article/"+article.id)=article.title
+                        a(href="/article/edit/"+article.id).btn.btn-sm.btn-warning.float-right Edit
+                        a(href="#", data-id=article._id).delete-article.btn.btn-sm.btn-danger.float-right Delete

@@ -66,7 +66,7 @@ app.get('*', (req, res, next) => {
 })
 
 
-app.get('/', (req, res) => {
+app.get('/', ensureAuth, (req, res) => {
     Article.find({}, (err, articles) => {
         if(err){
             console.log('There is an error:' + err);
@@ -78,7 +78,19 @@ app.get('/', (req, res) => {
         }
        
     })
+
 })
+
+function ensureAuth(req, res, next){
+    if(!req.user){
+        res.redirect('/users/login')
+        req.flash('danger', 'Please log in')
+    }else{
+        return next()
+    }
+}
+
+
 
 let articles = require('./routes/articles')
 app.use('/articles', articles)

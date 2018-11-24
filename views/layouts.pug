@@ -6,8 +6,5 @@ html
     body 
         block content
         != messages('message', locals)
-        if errors
-            each error, i in errors
-                div(class="alert alert-danger") #{error.msg}
         script(src="/bower_components/jquery/dist/jquery.js")
         script(src="/js/main.js")

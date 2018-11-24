@@ -1,0 +1,18 @@
+extends layouts
+block content
+
+    h1 #{title}
+    form(action="/users/signup", method="POST")
+        .form-group
+            label Name:
+            input(type="text", name="name")
+        .form-group
+            label email:
+            input(type="email", name="email")
+        .form-group
+            label Username:
+            input(name="username", type="text")
+        .form-group
+            label Password:
+            input(name="password", type="password")
+        input(type="submit", value="submit")

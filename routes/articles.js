@@ -21,17 +21,7 @@ router.post("/add", (req, res) => {
     })
  })
  
- router.get('/:id', (req, res) => {
-     Article.findById(req.params.id, (err, article) =>{
-         if(err){
-             console.log(err)
-         }else{
-             res.render('article', {
-                 article
-             })
-         }
-     })
- })
+ 
  
  router.get('/edit/:id', (req, res) => {
      Article.findById(req.params.id, (err, article) => {
@@ -80,5 +70,17 @@ router.post("/add", (req, res) => {
          title: "Add an Article",
      })
  })
+
+ router.get('/:id', (req, res) => {
+    Article.findById(req.params.id, (err, article) =>{
+        if(err){
+            console.log(err)
+        }else{
+            res.render('article', {
+                article
+            })
+        }
+    })
+})
 
  module.exports = router;

@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 
+const passport = require('passport')
+
 const flash = require('connect-flash')
 
 const expressValidator = require('express-validator')
@@ -54,6 +56,15 @@ app.use(session({
     next();
 });
 
+require('./config/passport')(passport)
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('*', (req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+})
+
 
 app.get('/', (req, res) => {
     Article.find({}, (err, articles) => {
@@ -71,4 +82,7 @@ app.get('/', (req, res) => {
 
 let articles = require('./routes/articles')
 app.use('/articles', articles)
+
+let users = require('./routes/users');
+app.use('/users', users);
 app.listen(port, () => console.log('Listening on port' + ' ' + `${port}`+ '. Press ctrl C to stop server'));

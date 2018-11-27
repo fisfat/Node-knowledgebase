@@ -95,6 +95,9 @@ function ensureAuth(req, res, next){
 let articles = require('./routes/articles')
 app.use('/articles', articles)
 
+let api = require('./routes/api');
+app.use('/api', api);
+
 let users = require('./routes/users');
 app.use('/users', users);
 app.listen(port, () => console.log('Listening on port' + ' ' + `${port}`+ '. Press ctrl C to stop server'));

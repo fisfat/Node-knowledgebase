@@ -20,5 +20,7 @@ router.get('/articles/:id', (req, res) => {
     })
 })
 
+router.delet
+
 
 module.exports = router

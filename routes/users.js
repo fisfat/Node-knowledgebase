@@ -36,7 +36,6 @@ router.post('/login', (req, res, next) => {
 
 router.post('/signup', (req, res) => {
     let user = new User();
-    
     let query = {username:req.body.username}
 
     User.find(query, (err, result) => {
@@ -72,9 +71,7 @@ router.post('/signup', (req, res) => {
                 }
             })
         }
-    })
-    
-    
+    })   
 })
 
 module.exports = router;

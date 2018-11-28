@@ -91,6 +91,7 @@ function ensureAuth(req, res, next){
 }
 
 
+app.use(express.json());
 
 let articles = require('./routes/articles')
 app.use('/articles', articles)

@@ -12,7 +12,9 @@ const expressValidator = require('express-validator')
 
 const { check, validationResult } = require('express-validator/check');
 
-mongoose.connect('mongodb://localhost/nodekb');
+mongoose.connect('mongodb://localhost/nodekb', {
+    useNewUrlParser: true
+});
 
 let db = mongoose.connection;
 

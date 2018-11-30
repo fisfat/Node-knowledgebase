@@ -42,7 +42,7 @@ router.post("/add", (req, res) => {
  router.post('/edit/:id', ensureMine,  (req, res) => {
      let article = {};
      article.title = req.body.title;
-     article.author = req.body.author;
+     article.author = req.user._id;
      article.body = req.body.body;
      let query = {_id:req.params.id}
      Article.update(query, article, (err) => {
@@ -75,13 +75,13 @@ router.post("/add", (req, res) => {
 
  router.get('/:id', (req, res) => {
     Article.findById(req.params.id, (err, article) =>{
-        User.findById(article.author, (err, user) => {
+        User.findById(article.author, (err, articleUser) => {
             if(err){
                 console.log(err)
             }else{
                 res.render('article', {
                     article,
-                    user
+                    articleUser
                 })
             }
         })

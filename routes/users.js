@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
 
 const User = require('../models/user');
 
@@ -32,7 +33,13 @@ router.post('/login', (req, res, next) => {
         failureFlash: true
     })(req, res, next)
 })
-
+router.get('/gettoken', (req, res) => {
+    jwt.sign({user: req.user}, 'secret', (err, token) => {
+        res.render('viewtoken', {
+            token
+        })
+    })
+})
 
 router.post('/signup', (req, res) => {
     let user = new User();

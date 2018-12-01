@@ -33,7 +33,7 @@ router.post('/login', (req, res, next) => {
         failureFlash: true
     })(req, res, next)
 })
-router.get('/gettoken', (req, res) => {
+router.get('/gettoken', ensureAuth, (req, res) => {
     jwt.sign({user: req.user}, 'secret', (err, token) => {
         res.render('viewtoken', {
             token
@@ -80,5 +80,14 @@ router.post('/signup', (req, res) => {
         }
     })   
 })
+
+function ensureAuth(req, res, next){
+    if(!req.user){
+        res.redirect('/users/login')
+        req.flash('danger', 'Please log in')
+    }else{
+        return next()
+    }
+}
 
 module.exports = router;

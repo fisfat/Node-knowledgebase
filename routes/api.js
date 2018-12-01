@@ -4,11 +4,15 @@ const router = express.Router();
 
 const passport = require('passport')
 
+const bcrypt = require('bcryptjs')
+
 const Joi = require('joi')
 
 const jwt = require('jsonwebtoken')
 
 const Article = require('../models/article');
+
+const User = require('../models/user')
 
 
 router.get('/articles',verifyToken, (req, res) => {
@@ -46,8 +50,8 @@ router.delete('/articles/delete/:id',verifyToken, (req, res) => {
     })
 })
 
-router.post('/articles/edit/:id', verifyToken, (req, res) => {
-            jwt.verify(req.auth, 'secret', (err) => {
+router.put('/articles/edit/:id', verifyToken, (req, res) => {
+            jwt.verify(req.auth, 'secret', (err, data) => {
                 if(err) return res.status(403).send('forbidden')
 
                 const schema = {
@@ -69,9 +73,47 @@ router.post('/articles/edit/:id', verifyToken, (req, res) => {
                 Article.update(query, articleEdit, (err) => {
                     if (err) return res.status(401).send('Bad request')
 
-                    res.status(200).send(articleEdit)
+                    res.status(200).send({status: 'success', articleEdit})
                 })
             })       
+})
+
+router.post('/signup', (req, res) => {
+    let user = new User();
+    let query = {username:req.body.username}
+
+    User.find(query, (err, result) => {
+        if(err) throw err
+        if(result && result.length >= 1){
+            res.status(400).send('user with username ' + req.body.username + ' already exists')
+        }else{
+            user.name = req.body.name;
+            user.email = req.body.email;
+            user.username = req.body.username;
+            
+            let password = req.body.password
+            bcrypt.genSalt(10, (err, salt) => {
+                if(err){
+                    res.send('An error occured')
+                }else{
+                    bcrypt.hash(password, salt, (err, hash) =>  {
+                        if(err){
+                            res.send('An error occured')
+                        }else{
+                            user.password = hash
+                            user.save((err) => {
+                                if(err){
+                                    res.send('An error occured')
+                                }else{
+                                    res.send('user successfully signed up')
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })   
 })
 
 

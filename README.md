@@ -27,7 +27,8 @@ Most endpoints require a token for authentication. The API call should have the 
 
 Example:
 
-```authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjViZjkxYTExMjNlOTQ4MmZhYzdlNmJjYiIsIm5hbWUiOiJGYXRveWluYm8gT2x1d2FmaXNheW8iLCJlbWFpbCI6IkZhdG95aW5ib29sdXdhZmlzYXlvQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiZmlzZmF0Iiw3dZaFdNRFpxUHdVZVNGcXFDc21KMkhhTWlneS9HMkd1RDZJUjNiLlNvazIiLCJfX3YiOjB9LCJpYXQiOjE1NDM2NTI5NTR9.i9zJEMBWv6H4hXyOVr8MKNCRauAiFam03jO3CPmhjRc" 
+```js 
+authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjViZjkxYTExMjNlOTQ4MmZhYzdlNmJjYiIsIm5hbWUiOiJGYXRveWluYm8gT2x1d2FmaXNheW8iLCJlbWFpbCI6IkZhdG95aW5ib29sdXdhZmlzYXlvQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiZmlzZmF0Iiw3dZaFdNRFpxUHdVZVNGcXFDc21KMkhhTWlneS9HMkd1RDZJUjNiLlNvazIiLCJfX3YiOjB9LCJpYXQiOjE1NDM2NTI5NTR9.i9zJEMBWv6H4hXyOVr8MKNCRauAiFam03jO3CPmhjRc" 
 ```
 
 | EndPoint                                |   Functionality                      | Requires token   |

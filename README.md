@@ -33,8 +33,8 @@ authentication: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjViZj
 
 | EndPoint                                |   Functionality                      | Requires token   |
 | --------------------------------------- | ------------------------------------:|------------------|
-| POST /api/signup                        | Signup a user                        |  No              |
-| POST /api/articles/add                  | Create a new todo                    |  Yes             |
+| POST /api/signup                        | Signup a new user                    |  No              |
+| POST /api/articles/add                  | Create a new article                 |  Yes             |
 | GET /api/articles                       | List all article                     |  Yes             |
 | GET /api/articles/:id                   | Get single article                   |  Yes             |
 | PUT /api/articles/:id                   | Update this article                  |  Yes             |
